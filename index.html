@@ -108,7 +108,20 @@
       border-bottom: 1px solid #333;
       padding: 12px;
     }
-  </style>
+  body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png') repeat;
+  opacity: 0.06;
+  z-index: -1;
+  pointer-events: none;
+  background-attachment: fixed;
+}
+</style>
 </head>
 <body>
 <script>
@@ -257,5 +270,3 @@
   <a href="/privacy.html">Privacy</a>
   <a href="mailto:support@potionparlay.com">Support</a>
 </footer>
-
-  
