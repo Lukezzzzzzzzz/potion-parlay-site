@@ -121,6 +121,24 @@
   pointer-events: none;
   background-attachment: fixed;
 }
+@keyframes foggyShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom right, #1c1c2b, #2f1e4f);
+  background-size: 400% 400%;
+  animation: foggyShift 20s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -270,3 +288,4 @@
   <a href="/privacy.html">Privacy</a>
   <a href="mailto:support@potionparlay.com">Support</a>
 </footer>
+
