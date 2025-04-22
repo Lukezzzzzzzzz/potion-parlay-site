@@ -66,7 +66,61 @@
     <button onclick="generatePick()" class="cta-button" style="margin-bottom: 20px;">🔁 Spin a Pick</button>
     <div id="ev-pick-output" style="color:#14f195; font-size: 1.1rem;"></div>
   </div>
+<div style="margin-top: 60px;">
+  <h3 style="color:#fff;">🔥 Random EV Bet Generator</h3>
+  <button class="cta-button" onclick="showEVCard()">🎲 Spin an EV Bet</button>
+  <div id="ev-card-output" style="margin-top: 30px; max-width: 800px; margin-inline: auto;"></div>
+</div>
 </section>
+
+<script>
+const evBets = [
+  {
+    league: "Ligue 1 | FCN vs PSG",
+    time: "Tue, Apr 22 – 2:45 PM EDT",
+    prop: "Over 3.5 Total Goals",
+    ai: 91.82,
+    implied: 46.51,
+    ev: 97.41,
+    odds: "+115"
+  },
+  {
+    league: "La Liga | BAR vs MAL",
+    time: "Tue, Apr 22 – 3:30 PM EDT",
+    prop: "Over 3.5 Total Goals",
+    ai: 87.3,
+    implied: 46.51,
+    ev: 87.7,
+    odds: "+115"
+  },
+  {
+    league: "MLB | COL @ KC",
+    time: "Tue, Apr 22 – 7:40 PM EDT",
+    prop: "Colorado Rockies ML",
+    ai: 58,
+    implied: 35.71,
+    ev: 62.4,
+    odds: "+180"
+  }
+];
+
+function showEVCard() {
+  const bet = evBets[Math.floor(Math.random() * evBets.length)];
+  document.getElementById('ev-card-output').innerHTML = `
+    <div style="background:#222; padding:20px; border-radius:12px; color:#ccc; text-align:left;">
+      <h4 style="margin:0 0 10px 0;">${bet.league}</h4>
+      <p style="margin:0 0 10px 0; font-size:0.95rem;">${bet.time}</p>
+      <div style="font-size:1.1rem; font-weight:bold; color:#14f195;">${bet.prop}</div>
+      <div style="margin-top:10px;">
+        <span>🧠 AI Probability: <strong>${bet.ai}%</strong></span><br>
+        <span>📉 Implied Probability: <strong>${bet.implied}%</strong></span><br>
+        <span>💰 EV: <strong>${bet.ev}%</strong></span><br>
+        <span>📊 Best Odds: <strong>${bet.odds}</strong></span>
+      </div>
+    </div>
+  `;
+}
+</script>
 
 <script>
 function generatePick() {
