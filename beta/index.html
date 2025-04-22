@@ -79,35 +79,17 @@
 </section>
 
 <script>
-const evBets = [
-  {
-    league: "Ligue 1 | FCN vs PSG",
-    time: "Tue, Apr 22 – 2:45 PM EDT",
-    prop: "Over 3.5 Total Goals",
-    ai: 91.82,
-    implied: 46.51,
-    ev: 97.41,
-    odds: "+115"
-  },
-  {
-    league: "La Liga | BAR vs MAL",
-    time: "Tue, Apr 22 – 3:30 PM EDT",
-    prop: "Over 3.5 Total Goals",
-    ai: 87.3,
-    implied: 46.51,
-    ev: 87.7,
-    odds: "+115"
-  },
-  {
-    league: "MLB | COL @ KC",
-    time: "Tue, Apr 22 – 7:40 PM EDT",
-    prop: "Colorado Rockies ML",
-    ai: 58,
-    implied: 35.71,
-    ev: 62.4,
-    odds: "+180"
-  }
-];
+let evBets = [];
+
+fetch("/api/ev-picks")
+  .then(res => res.json())
+  .then(data => {
+    evBets = data;
+    evBets.forEach(bet => {
+      renderEVCard(bet, 'ev-card-output');
+      addToEVList(bet);
+    });
+  });
 
 function showEVCard() {
   const bet = evBets[Math.floor(Math.random() * evBets.length)];
