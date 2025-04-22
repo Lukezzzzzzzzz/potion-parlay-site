@@ -1,156 +1,56 @@
-<nav style="position:sticky;top:0;z-index:1000;background:#000;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;">
-    <div class="logo" style="display:flex;align-items:center;gap:10px;">
-      <img src="/logo.png" alt="Potion Parlay Logo" style="height:40px;">
-      <h1 style="font-size:1.5rem;margin:0;">Potion Parlay</h1>
-    </div>
-    <div class="nav-links" style="display:flex;gap:10px;">
-      <a class="button" href="#" onclick="document.getElementById('beehiivModal').style.display='block'" style="background: linear-gradient(to right, #14f195, #9945ff); color: #000; padding: 10px 20px; font-size: 1rem; font-weight: bold; border-radius: 10px; text-decoration: none; box-shadow: 0 0 10px #14f195;">✨ Start Brewing</a>
-    </div>
-  </nav>
-  
-  <section id="waitlist" style="text-align:center; padding: 60px 20px;">
-    <h2 style="font-size: 2rem; margin-bottom: 20px;">📬 Join the Waitlist</h2>
-    <p style="max-width: 600px; margin: 0 auto 30px; color: #ccc;">
-      Want daily +EV picks, parlay recipes, and market insights delivered to your inbox? Join the Potion Parlay waitlist today.
-    </p>
-    <div>
-      <button onclick="document.getElementById('beehiivModal').style.display='block'" class="launch-button" style="margin: 20px auto;">✨ Start Brewing</button>
-    </div>
-  </p>
-    <div>
-      <button onclick="document.getElementById('beehiivModal').style.display='block'" class="launch-button" style="margin: 20px auto;">✨ Start Brewing</button>
-    </div>
-  </section>
-  
-  <div id="beehiivModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; text-align:center;">
-    <div style="position:relative; width:90%; max-width:600px; margin:80px auto; background:#000; border:2px solid #14f195; border-radius:12px; padding:20px;">
-      <button onclick="document.getElementById('beehiivModal').style.display='none'" style="position:absolute; top:10px; right:15px; font-size:1.5rem; color:#14f195; background:none; border:none; cursor:pointer;">×</button>
-      <iframe
-        src="https://embeds.beehiiv.com/3b3dcd2e-f36e-43ef-a327-d090e1f7d462"
-        data-test-id="beehiiv-embed"
-        width="100%"
-        height="320"
-        frameborder="0"
-        scrolling="no"
-        style="border-radius: 8px; border: none; background-color: #0a0a0a;">
-      </iframe>
-    </div>
-  </div>
-  
-  <section id="hero" style="text-align:center; padding: 120px 20px 80px; background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%); position:relative;">
-    <h1 style="font-size: 3.5rem; margin-bottom: 20px; background: linear-gradient(to right, #14f195, #9945ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-      Parlay Smarter. Win Louder.
-    </h1>
-    <p style="font-size: 1.25rem; color: #ccc; max-width: 700px; margin: 0 auto 40px;">
-      Get daily +EV insights and craft AI-optimized parlays with the industry's first dynamic value builder.
-    </p>
-    <button onclick="document.getElementById('beehiivModal').style.display='block'" class="launch-button">✨ Start Brewing</button>
-  <div style="max-width: 1000px; margin: 40px auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; padding: 0 20px;">
-    <div style="text-align: center;">
-      <h3 style="margin-bottom: 10px; font-size: 1.2rem; color: #14f195;">📈 28,341 picks analyzed today</h3>
-    </div>
-    <div style="text-align: center;">
-      <h3 style="margin-bottom: 10px; font-size: 1.2rem; color: #14f195;">🧪 1,216 profitable parlays brewed</h3>
-    </div>
-    <div style="text-align: center;">
-      <h3 style="margin-bottom: 10px; font-size: 1.2rem; color: #14f195;">👥 9,448 potion masters active</h3>
-    </div>
-  </div>
-  
-  <div style="text-align:center; margin: 60px auto 0; padding: 0 20px;">
-    <p style="margin-bottom: 20px; font-size: 1rem; color: #ccc;">As featured in</p>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
-      <img src="/logos/fanduel.svg" alt="FanDuel" style="height: 30px;">
-      <img src="/logos/draftkings.svg" alt="DraftKings" style="height: 30px;">
-      <img src="/logos/espn.svg" alt="ESPN" style="height: 30px;">
-      <img src="/logos/caesars.svg" alt="Caesars" style="height: 30px;">
-      <img src="/logos/betmgm.svg" alt="BetMGM" style="height: 30px;">
-    </div>
-  </div>
-  
-  </section>
-  
-  <section id="features" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; max-width: 1000px; margin: 80px auto; padding: 0 20px;">
-    <div class="tool">
-      <h3>🧪 Prop Analyzer</h3>
-      <p>Compare projections to sportsbook lines and identify mispriced value props instantly.</p>
-    </div>
-    <div class="tool">
-      <h3>📊 EV Simulator</h3>
-      <p>Run real-time simulations on single bets and parlays to estimate expected value and volatility.</p>
-    </div>
-    <div class="tool">
-      <h3>⚔️ Sharp Fade Alerts</h3>
-      <p>See where sharp money conflicts with public action and projection models.</p>
-    </div>
-    <div class="tool">
-      <h3>🧬 Correlation Detector</h3>
-      <p>Automatically tag props that synergize inside your parlay for optimal risk-reward stacking.</p>
-    </div>
-  </section>
-  
-  <section id="footer" style="text-align: center; padding: 60px 20px; font-size: 0.85rem; color: #555;">
-    <p>&copy; 2025 Potion Parlay. All rights reserved.</p>
-    <div style="margin-top: 10px;">
-      <a href="#" style="color:#14f195; text-decoration:none; margin: 0 10px;">Privacy</a>
-      <a href="#" style="color:#14f195; text-decoration:none; margin: 0 10px;">Terms</a>
-      <a href="#" style="color:#14f195; text-decoration:none; margin: 0 10px;">Support</a>
-    </div>
-  <section id="cta-bar" style="text-align: center; padding: 60px 20px; background: linear-gradient(to right, #14f195, #9945ff); color: #000;">
-    <h2 style="font-size: 2rem; margin-bottom: 20px;">Ready to unlock smarter parlays?</h2>
-    <button onclick="document.getElementById('beehiivModal').style.display='block'" class="launch-button" style="background:#000; color:#14f195; border:2px solid #14f195;">✨ Start Brewing</button>
-  </section>
-  
-  </section>
-  
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script>
-    particlesJS("hero", {
-      particles: {
-        number: { value: 60 },
-        color: { value: ["#14f195", "#9945ff"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.3 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 150, color: "#14f195", opacity: 0.2, width: 1 },
-        move: { enable: true, speed: 1 }
-      },
-      interactivity: { detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false } } },
-      retina_detect: true
-    });
-  </script>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Potion Parlay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    .launch-button:hover, .button:hover {
+    body {
+      background: #000;
+      color: #14f195;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #14f195, #9945ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    a.button {
+      margin-top: 2rem;
+      background: #14f195;
+      color: #000;
+      text-decoration: none;
+      padding: 14px 28px;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    a.button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px #9945ff;
-    }
-  
-    section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-  
-    section.reveal {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
-  <script>
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal');
-        }
-      });
-    }, { threshold: 0.1 });
-  
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  </script>
-  
-  <!-- keep existing content below -->
+</head>
+<body>
+  <h1>🧪 Potion Parlay</h1>
+  <p>The ultimate +EV engine for smarter parlays.</p>
+  <a class="button" href="/beta">Launch the EV Engine</a>
+</body>
+</html>
+
   
