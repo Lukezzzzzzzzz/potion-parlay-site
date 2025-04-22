@@ -47,17 +47,15 @@
   </p>
 
   <form id="builder-form" style="margin-bottom: 30px;">
-    <select id="prop-select" style="padding: 10px; font-size: 1rem;">
-      <option disabled selected>Choose a prop</option>
-      <option value="Steph Curry|+115|12.4">Steph Curry – Over 3.5 3PM</option>
-      <option value="Connor McDavid|-105|9.7">Connor McDavid – Over 1.5 Points</option>
-      <option value="Ronald Acuña Jr.|+135|14.1">Ronald Acuña Jr. – Over 1.5 Total Bases</option>
-    </select>
+    <select id="prop-select" style="padding: 10px; font-size: 1rem;"></select>
     <button type="submit" class="cta-button" style="margin-left: 10px;">➕ Add Pick</button>
   </form>
 
   <div id="parlay-list" style="max-width: 700px; margin: 0 auto; color: #ccc;"></div>
   <div id="parlay-summary" style="margin-top: 20px; color: #14f195;"></div>
+  <div style="margin-top: 30px;">
+    <button class="cta-button" onclick="location.reload()">🔁 Spin Again</button>
+  </div>
   
 </div>
 
@@ -74,14 +72,25 @@ fetch("/api/ev-picks")
   .then(res => res.json())
   .then(data => {
     evBets = data;
-    evBets.forEach(bet => {
-      // removed renderEVCard(bet, 'ev-card-output');
-      addToEVList(bet);
-    });
+    populateDropdown(data);
+data.forEach(bet => {
+  addToEVList(bet);
+});
   });
 
 </script>
 <script>
+function populateDropdown(picks) {
+  const dropdown = document.getElementById('prop-select');
+  dropdown.innerHTML = '<option disabled selected>Choose a prop</option>';
+  picks.forEach(p => {
+    const option = document.createElement('option');
+    option.value = `${p.prop}|${p.odds}|${p.ev}`;
+    option.textContent = p.prop;
+    dropdown.appendChild(option);
+  });
+}
+
   const form = document.getElementById('builder-form');
   const select = document.getElementById('prop-select');
   const list = document.getElementById('parlay-list');
@@ -122,6 +131,8 @@ fetch("/api/ev-picks")
 
 </body>
 </html>
+
+
 
 
 
