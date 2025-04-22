@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potion Parlay Pricing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #000;
+      color: #14f195;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      background: linear-gradient(to right, #14f195, #9945ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 40px;
+    }
+    .pricing-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .plan {
+      background: #0a0a0a;
+      border: 2px solid #14f195;
+      border-radius: 12px;
+      padding: 24px;
+      width: 280px;
+    }
+    .plan.pro {
+      border-color: #ffcc00;
+    }
+    .plan h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .plan p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin: 8px 0;
+    }
+    .plan .cta {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(to right, #14f195, #9945ff);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: box-shadow 0.3s ease;
+    }
+    .plan .cta:hover {
+      box-shadow: 0 0 12px #14f195;
+    }
+  
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+$1
+<style>
+  table td[title] {
+    position: relative;
+    cursor: help;
+  }
+  table td[title]::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: #111;
+    color: #14f195;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border: 1px solid #14f195;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  table td[title]:hover::after {
+    opacity: 1;
+  }
+</style>
+$1
+$1
+  <div style="text-align: left; max-width: 1000px; margin: 0 auto 20px;">
+    <a href="/" style="color: #14f195; font-size: 1rem; text-decoration: none; border: 1px solid #14f195; padding: 8px 16px; border-radius: 8px; display: inline-block;">← Back to Homepage</a>
+  </div>
+  <div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+    <a href="/pricing" style="background: linear-gradient(to right, #14f195, #9945ff); color: #000; padding: 10px 18px; border-radius: 10px; font-weight: bold; text-decoration: none; box-shadow: 0 0 10px #14f195;">💸 Pricing</a>
+  </div>
+  <div style="margin-bottom: 30px;">
+  <button onclick="toggleView('cards')" style="padding: 10px 20px; margin-right: 10px; border: none; border-radius: 8px; background: #14f195; color: #000; font-weight: bold; cursor: pointer;">Card View</button>
+  <button onclick="toggleView('table')" style="padding: 10px 20px; border: none; border-radius: 8px; background: #9945ff; color: #fff; font-weight: bold; cursor: pointer;">Compare Features</button>
+</div>
+$1
+  <div style="margin-bottom: 30px;">
+  <label for="billing-toggle" style="font-size: 1rem; color: #ccc; margin-right: 10px;">Billing:</label>
+  <select id="billing-toggle" style="padding: 10px 14px; border-radius: 8px; background: #0a0a0a; border: 2px solid #14f195; color: #14f195; font-weight: bold; font-family: 'Orbitron', sans-serif;" onchange="updatePricing()">
+    <option value="monthly">Monthly</option>
+    <option value="annual">Annual (Save 20%)</option>
+  </select>
+</div>
+
+$1
+    <div class="plan">
+      <h2>Free Brew</h2>
+      <p>✅ 3 EV picks per day</p>
+      <p>📊 Access to public value dashboard</p>
+      <p>🚫 No parlay builder or customization</p>
+      <p>📉 No sharp fade or steam alerts</p>
+      <a href="/signup" class="cta"><a href="https://buy.stripe.com/test_8wM4iF3YBfRMcAE9AA" class="cta">$1</a></a>
+    </div>
+
+    <div class="plan">
+      <h2>Full Brew</h2>
+      <p>✅ Unlimited picks</p>
+      <p>📈 Confidence meters, sharp fade alerts</p>
+      <p>🧠 AI pick summaries</p>
+      <p>⚖️ Model tuning, prop filters</p>
+      <p>🚫 Parlay builder locked</p>
+      <a href="/signup" class="cta">Upgrade</a>
+    </div>
+
+    <div class="plan pro" style="position: relative;">
+  <div style="position: absolute; top: -12px; right: -12px; background: #ffcc00; color: #000; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 6px;">MOST POPULAR</div>
+      <h2>Sharp Mode</h2>
+      <p>✅ Everything in Full Brew</p>
+      <p>⚗️ Full access to parlay builder</p>
+      <p>📊 Beta tools, hedge calc, trend scanner</p>
+      <p>💬 Private Discord channel access</p>
+      <p>📞 Priority support</p>
+      <a href="/signup" class="cta">Go Sharp</a>
+    <!-- Why Choose Us -->
+<div class="reveal" style="max-width: 1000px; margin: 80px auto; text-align: center;">
+  <h2 style="color: #14f195; margin-bottom: 30px;">💡 Why Choose Potion Parlay?</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+    <div style="max-width: 200px; color: #ccc;">
+      🔐 <strong>Secure Checkout</strong><br>Protected by Stripe and encrypted access.
+    </div>
+    <div style="max-width: 200px; color: #ccc;">
+      🧠 <strong>AI-Powered Engine</strong><br>Stat-based modeling + market edge tracking.
+    </div>
+    <div style="max-width: 200px; color: #ccc;">
+      💬 <strong>Discord Community</strong><br>Join the sharpest bettors and beta testers.
+    </div>
+    <div style="max-width: 200px; color: #ccc;">
+      📈 <strong>Built for Profitable Play</strong><br>Made for edge-seekers, not gamblers.
+    </div>
+  </div>
+</div>
+
+<!-- Guarantee Section -->
+<div class="reveal" style="text-align: center; max-width: 600px; margin: 60px auto; font-size: 1.1rem; color: #ccc;">
+  🛡️ <strong>Try Sharp Mode risk-free.</strong><br>Cancel anytime. No contracts. No hard feelings.
+</div>
+
+<!-- Sticky CTA -->
+<div style="position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 9999; background: #0a0a0a; border: 2px solid #14f195; border-radius: 10px; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 0 12px #14f195;">
+  <span style="color: #14f195; font-size: 1rem; font-weight: bold;">Unlock +EV parlays with Sharp Mode</span>
+  <a href="/signup" style="background: #14f195; color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; text-decoration: none;">Upgrade Now</a>
+</div>
+
+</div>
+$1
+<div class="reveal" style="max-width: 800px; margin: 80px auto; text-align: left;">
+  <h2 style="color: #14f195; text-align: center;">🧪 What Users Are Saying</h2>
+  $1 class="testimonial-slide">
+    “Potion Parlay completely changed how I build bets. The sharp fade alerts alone are worth it.”<br><small>– @EdgeSniper</small>
+  $1
+  <blockquote style="color:#ccc; border-left: 4px solid #14f195; padding-left: 20px; margin: 20px 0;">
+    “Love being able to filter props by risk, edge, and correlation. The value here is insane.”<br><small>– @PropAlchemist</small>
+  </blockquote>
+  <blockquote style="color:#ccc; border-left: 4px solid #14f195; padding-left: 20px; margin: 20px 0;">
+    “Nothing else compares when it comes to +EV parlays. Sharp Mode is absolutely elite.”<br><small>– @SharpWizard</small>
+  </blockquote>
+</div>
+
+<!-- Testimonials -->
+<div class="reveal" style="max-width: 1000px; margin: 80px auto; text-align: left;">
+  <h2 style="color: #14f195; text-align: center;">💬 What Our Users Are Saying</h2>
+  <blockquote style="color:#ccc; border-left: 4px solid #14f195; padding-left: 20px; margin: 20px 0;">
+    “Potion Parlay completely changed how I build bets. The sharp fade alerts alone are worth it.”<br><small>– @EdgeSniper</small>
+  </blockquote>
+  <blockquote style="color:#ccc; border-left: 4px solid #14f195; padding-left: 20px; margin: 20px 0;">
+    “Nothing else compares when it comes to +EV parlays. Sharp Mode is absolutely elite.”<br><small>– @SharpWizard</small>
+  </blockquote>
+  <blockquote style="color:#ccc; border-left: 4px solid #14f195; padding-left: 20px; margin: 20px 0;">
+    “Love being able to filter props by risk, edge, and correlation. The value here is insane.”<br><small>– @PropAlchemist</small>
+  </blockquote>
+</div>
+
+$1
+<div class="reveal" style="max-width: 800px; margin: 60px auto;">
+  <h2 style="text-align: center; color: #14f195;">❓ Frequently Asked Questions</h2>
+  <ul style="color:#ccc; list-style: none; padding-left: 0;">
+    <li style="margin-bottom: 20px;"><strong>What happens if I cancel?</strong><br>You’ll keep access through the end of your billing cycle. No penalties.</li>
+    <li style="margin-bottom: 20px;"><strong>Can I try before paying?</strong><br>Yes — start with Free Brew and upgrade anytime.</li>
+    <li style="margin-bottom: 20px;"><strong>What’s the difference between Full and Sharp?</strong><br>Sharp includes the parlay builder, beta tools, and Discord access.</li>
+  $1
+
+<script>
+  const slides = document.querySelectorAll('.testimonial-slide');
+  let i = 0;
+  function rotateTestimonials() {
+    slides.forEach((el, idx) => {
+      el.style.display = idx === i ? 'block' : 'none';
+    });
+    i = (i + 1) % slides.length;
+  }
+  if (slides.length) {
+    slides.forEach(el => el.style.display = 'none');
+    rotateTestimonials();
+    setInterval(rotateTestimonials, 6000);
+  }
+</script>
+
+<script>
+function updatePricing() {
+  const planEls = document.querySelectorAll('.plan');
+  const toggle = document.getElementById('billing-toggle');
+  const mode = toggle.value;
+  const monthly = ['Start Free', '<a href="https://buy.stripe.com/test_dR63cD32NdRM3g48wx" class="cta">$1</a>', '<a href="https://buy.stripe.com/test_9AQ2aH4dLdRM4qQcMO" class="cta">$1</a>'];
+  const annual = ['Start Free', 'Upgrade - $24/mo (billed yearly)', 'Go Sharp - $49/mo (billed yearly)'];
+  planEls.forEach((el, i) => {
+    const btn = el.querySelector('.cta');
+    if (btn) btn.innerText = mode === 'annual' ? annual[i] : monthly[i];
+  });
+}
+</script>
+
+$1
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+  
+    function toggleView(view) {
+      const grid = document.querySelector('.pricing-grid');
+      if (!grid) return;
+      if (view === 'table') {
+        $1
+          <div class='reveal' style='margin-bottom: 20px; font-size: 1.25rem; color: #14f195;'>Monthly Pricing Comparison</div>
+          $1 border: 1px solid #14f195; background: #0a0a0a; border-radius: 12px; overflow: hidden;'>
+            <thead>
+              <tr style='background: #111; color: #14f195;'>
+                <th style='text-align:left; padding: 14px 16px; border-bottom: 2px solid #14f195;'>Feature</th>
+                <th style='padding: 14px 16px; border-bottom: 2px solid #14f195;'>Free Brew</th>
+                <th>Full Brew</th>
+                <th>Sharp Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style='padding: 12px 16px; border-bottom: 1px solid #333;'>Daily Picks</td><td>3</td><td>Unlimited</td><td>Unlimited</td></tr>
+              <tr><td style='padding: 8px;' title='Create and customize multi-leg EV parlays'>Parlay Builder</td><td>❌</td><td>❌</td><td>✅</td></tr>
+              <tr><td style='padding: 8px;'>Confidence + Fade Alerts</td><td>❌</td><td>✅</td><td>✅</td></tr>
+              <tr><td style='padding: 8px;' title='Adjust projection weighting, volatility, and risk scoring'>Model Tuning</td><td>❌</td><td>✅</td><td>✅</td></tr>
+              <tr><td style='padding: 8px;'>AI Summaries</td><td>❌</td><td>✅</td><td>✅</td></tr>
+              <tr><td style='padding: 8px;' title='Access experimental modules like edge decay, hedge sim, and line drift charts'>Beta Tools Access</td><td>❌</td><td>❌</td><td>✅</td></tr>
+              <tr><td style='padding: 8px;'>Private Discord</td><td>❌</td><td>❌</td><td>✅</td></tr>
+            </tbody>
+          </table>`;
+      } else {
+        location.reload(); // fallback to original layout
+      }
+    }
+$1
+$1
+</html>
