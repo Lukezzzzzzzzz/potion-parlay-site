@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Potion Parlay</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beta Parlay Builder</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(145deg, #161616, #25243a, #3d3969); background-size: cover; background-attachment: fixed;
+      margin: 0;
+      background: linear-gradient(145deg, #161616, #25243a, #3d3969);
+      background-size: cover;
+      background-attachment: fixed;
       color: #14f195;
       font-family: 'Orbitron', sans-serif;
       scroll-behavior: smooth;
     }
-    a, button {
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
     .section {
       padding: 60px 20px;
       text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .section.reveal {
-      opacity: 1;
-      transform: translateY(0);
     }
     .cta-button {
       background: linear-gradient(to right, #14f195, #9945ff);
@@ -36,251 +28,99 @@
       text-decoration: none;
       box-shadow: 0 0 10px #14f195;
       display: inline-block;
+      transition: all 0.3s ease;
     }
     .cta-button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px #9945ff;
     }
-    .plan-card {
-      background: #0a0a0a;
-      border: 2px solid #14f195;
-      border-radius: 12px;
-      padding: 24px;
-      width: 280px;
-      margin: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    select, input, button {
+      font-family: 'Orbitron', sans-serif;
     }
-    .plan-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 20px #14f195;
-    }
-    .faq-item {
-      background: #111;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-    .faq-item summary {
-      padding: 14px 20px;
-      cursor: pointer;
-      font-weight: bold;
-      color: #14f195;
-    }
-    .faq-item p {
-      padding: 0 20px 20px;
-      margin: 0;
-      color: #ccc;
-    }
-    blockquote {
-      background: #111;
-      border-left: 4px solid #14f195;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 700px;
-      font-style: italic;
-      color: #ccc;
-      border-radius: 8px;
-    }
-    blockquote small {
-      display: block;
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: #777;
-    }
-    .live-odds-widget, .community-section, .education-section {
-      background-color: #111;
-      border-radius: 12px;
-      padding: 40px 20px;
-      margin: 60px auto;
-      max-width: 1000px;
-    }
-    .live-odds-widget h3, .community-section h3, .education-section h3 {
-      color: #fff;
-      margin-bottom: 20px;
-    }
-    .live-odds-widget table {
-      width: 100%;
-      color: #ccc;
-      border-collapse: collapse;
-    }
-    .live-odds-widget td, .live-odds-widget th {
-      border-bottom: 1px solid #333;
-      padding: 12px;
-    }
-  body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(145deg, #161616, #25243a, #3d3969);
-  background-size: cover;
-  z-index: -1;
-  pointer-events: none;
-}
-@keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 10px #14f195;
-  }
-  100% {
-    box-shadow: 0 0 25px #9945ff;
-  }
-}
-</style>
+  </style>
 </head>
 <body>
+<section class="section" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969); padding: 60px 20px;">
+  <h2>🧪 AI Parlay Builder (Beta)</h2>
+  <p style="max-width: 700px; margin: 0 auto 30px; color: #ccc; font-size: 1rem;">
+    Experiment with building a custom parlay using live props. Add up to 4 picks, see simulated EV and payout.
+  </p>
+
+  <form id="builder-form" style="margin-bottom: 30px;">
+    <select id="prop-select" style="padding: 10px; font-size: 1rem;">
+      <option disabled selected>Choose a prop</option>
+      <option value="Steph Curry|+115|12.4">Steph Curry – Over 3.5 3PM</option>
+      <option value="Connor McDavid|-105|9.7">Connor McDavid – Over 1.5 Points</option>
+      <option value="Ronald Acuña Jr.|+135|14.1">Ronald Acuña Jr. – Over 1.5 Total Bases</option>
+    </select>
+    <button type="submit" class="cta-button" style="margin-left: 10px;">➕ Add Pick</button>
+  </form>
+
+  <div id="parlay-list" style="max-width: 700px; margin: 0 auto; color: #ccc;"></div>
+  <div id="parlay-summary" style="margin-top: 20px; color: #14f195;"></div>
+  <div style="margin-top: 40px;">
+    <h3 style="color:#fff;">🎯 +EV Pick Generator</h3>
+    <p style="color:#ccc; max-width: 600px; margin: 10px auto 20px;">
+      Click the button to generate a random +EV player prop from our internal projection pool.
+    </p>
+    <button onclick="generatePick()" class="cta-button" style="margin-bottom: 20px;">🔁 Spin a Pick</button>
+    <div id="ev-pick-output" style="color:#14f195; font-size: 1.1rem;"></div>
+  </div>
+</section>
+
 <script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('reveal');
-      }
-    });
-  }, { threshold: 0.1 });
-  window.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.section').forEach(section => observer.observe(section));
-  });
+function generatePick() {
+  const picks = [
+    "Ja Morant – Over 5.5 Assists (+120, +11.3% EV)",
+    "Mookie Betts – Over 1.5 Total Bases (+135, +13.8% EV)",
+    "Travis Kelce – Anytime TD (+100, +9.6% EV)",
+    "Jayson Tatum – Over 2.5 Threes (+110, +10.1% EV)"
+  ];
+  const rand = picks[Math.floor(Math.random() * picks.length)];
+  document.getElementById('ev-pick-output').innerText = rand;
+}
 </script>
 
-<!-- Header -->
-<nav style="position:sticky;top:0;background:#000;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;">
-  <div style="display:flex;align-items:center;gap:10px;">
-    <a href="#" style="text-decoration:none;"><h1 style="margin:0;font-size:1.5rem;color:#b94dff;text-shadow:0 0 10px #b94dff;">Potion Parlay</h1></a>
-  </div>
-  <div style="display:flex;gap:10px;">
-    <a class="cta-button" href="#login">Login / Sign Up</a>
-    <a class="cta-button" href="#pricing">💸 Pricing</a>
-  </div>
-</nav>
+<script>
+  const form = document.getElementById('builder-form');
+  const select = document.getElementById('prop-select');
+  const list = document.getElementById('parlay-list');
+  const summary = document.getElementById('parlay-summary');
 
-<!-- Hero Section -->
-<section class="section" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);">
-  <h1 style="font-size:3.5rem;margin-bottom:20px;background:linear-gradient(to right, #14f195, #9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Parlay Smarter. Win Louder.</h1>
-  <p style="font-size:1.25rem;max-width:700px;margin:0 auto 40px;color:#ccc;">Get daily +EV insights and craft AI-optimized parlays with the industry's first dynamic value builder.</p>
-  <a class="cta-button" href="#waitlist">✨ Start Brewing</a>
-</section>
+  let picks = [];
 
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const [name, odds, ev] = select.value.split('|');
+    if (picks.length >= 4) return alert("Max 4 picks allowed");
+    picks.push({ name, odds: parseInt(odds), ev: parseFloat(ev) });
+    renderPicks();
+  });
 
+  function renderPicks() {
+    list.innerHTML = picks.map((p, i) => `
+      <div style="margin-bottom: 10px;">
+        ${p.name} <span style="color:#999">(${p.odds > 0 ? '+' + p.odds : p.odds}, ${p.ev.toFixed(1)}% EV)</span>
+        <button onclick="removePick(${i})" style="margin-left:10px;color:#ff4d4d;">✖</button>
+      </div>
+    `).join('');
 
-<!-- Sample Picks Section -->
-<section class="section" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);">
-  <h2>🔥 Sample +EV Picks</h2>
-  <table style="margin:0 auto;color:#ccc;border-spacing:20px;text-align:left;">
-    <tr><th>Player</th><th>Prop</th><th>Odds</th><th>EV%</th></tr>
-    <tr><td>Steph Curry</td><td>Over 3.5 3PM</td><td>+115</td><td style="color:#14f195;">+12.4%</td></tr>
-    <tr><td>Connor McDavid</td><td>Over 1.5 Points</td><td>-105</td><td style="color:#14f195;">+9.7%</td></tr>
-    <tr><td>Ronald Acuña Jr.</td><td>Over 1.5 Total Bases</td><td>+135</td><td style="color:#14f195;">+14.1%</td></tr>
-  </table>
-</section>
+    if (picks.length > 0) {
+      const combinedEV = picks.reduce((acc, p) => acc + p.ev, 0);
+      const payoutMultiplier = picks.reduce((acc, p) => acc * (p.odds > 0 ? (p.odds / 100 + 1) : (100 / Math.abs(p.odds) + 1)), 1);
+      summary.innerHTML = `<strong>Projected Payout:</strong> ${(payoutMultiplier).toFixed(2)}x &nbsp; | &nbsp; <strong>Total EV:</strong> ${combinedEV.toFixed(1)}%`;
+    } else {
+      summary.innerHTML = "";
+    }
+  }
 
-<!-- Launch Beta Button -->
-<div style="margin-top: 30px; text-align: center;">
-  <a class="cta-button launch-beta" href="/beta" style="font-size: 1.1rem; padding: 12px 24px; animation: pulseGlow 2s infinite alternate;">🚀 Launch Beta Dashboard</a>
-</div>
+  function removePick(index) {
+    picks.splice(index, 1);
+    renderPicks();
+  }
+</script>
 
-
-
-
-<!-- Live Odds Section -->
-<section class="section live-odds-widget">
-  <h3>⚡ Live Odds Comparison</h3>
-  <table>
-    <tr><th>Matchup</th><th>FanDuel</th><th>DraftKings</th><th>Caesars</th></tr>
-    <tr><td>Lakers vs Celtics</td><td>+115</td><td>+120</td><td>+110</td></tr>
-    <tr><td>Jets vs Bills</td><td>-110</td><td>-108</td><td>-112</td></tr>
-  </table>
-</section>
-
-
-<!-- Pricing Section -->
-<section class="section" id="pricing" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);">
-  <h2>💸 Pricing</h2>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;">
-    <div class="plan-card">
-      <h3>Free Brew</h3>
-      <p>3 Picks/day<br>Basic Builder<br>Limited Sports</p>
-      <a class="cta-button" href="#signup">Start Free</a>
-    </div>
-    <div class="plan-card" style="border-color:#9945ff;">
-      <h3>Full Brew</h3>
-      <p>Unlimited Picks<br>Confidence Scores<br>All Sports</p>
-      <a class="cta-button" href="#signup">Upgrade</a>
-    </div>
-    <div class="plan-card" style="border-color:#ffcc00;">
-      <h3>Sharp Mode</h3>
-      <p>Parlay Engine<br>Beta Tools<br>Priority Support</p>
-      <a class="cta-button" href="#signup">Go Sharp</a>
-    </div>
-  </div>
-</section>
-
-
-  
-  <!-- AI Builder Section -->
-<section class="section">
-  <h2>🧠 What Makes Our AI Parlay Builder Special?</h2>
-  <p style="max-width: 800px; margin: 0 auto; color: #ccc; font-size: 1.1rem;">
-    Our proprietary AI Parlay Builder isn’t just a tool — it’s your edge engine. It reads projection models, monitors market lines, detects correlation between props, and builds +EV parlays optimized for risk and payout. Think of it as your data-driven betting assistant, always refining your picks in real time.
-  </p>
-  <ul style="max-width: 700px; margin: 40px auto; color: #ccc; text-align: left; list-style: none; padding: 0;">
-    <li>✅ Learns from line movement and betting trends</li>
-    <li>✅ Tags optimal combinations with synergy bonuses</li>
-    <li>✅ Avoids overcorrelation and redundancy</li>
-    <li>✅ Offers risk-adjusted payout previews before you bet</li>
-    <li>✅ Powered by real-world projection data and steam alerts</li>
-  </ul>
-</section>
-
-
-  
-<section class="section" >
-  <h2>💬 What Our Users Are Saying</h2>
-  <blockquote>“Potion Parlay completely changed how I build bets. The sharp fade alerts alone are worth it.”<small>– @EdgeSniper</small></blockquote>
-  <blockquote>“Nothing else compares when it comes to +EV parlays. Sharp Mode is absolutely elite.”<small>– @SharpWizard</small></blockquote>
-  <blockquote>“Love being able to filter props by risk, edge, and correlation. The value here is insane.”<small>– @PropAlchemist</small></blockquote>
-</section>
-
-
-
-<!-- FAQ Section -->
-<section class="section">
-  <h2>❓ Frequently Asked Questions</h2>
-  <div style="max-width: 700px; margin: 0 auto; text-align: left;">
-    <details class="faq-item"><summary>What happens if I cancel?</summary><p>You’ll keep access through the end of your billing cycle. No penalties.</p></details>
-    <details class="faq-item"><summary>Can I try before paying?</summary><p>Yes — start with Free Brew and upgrade anytime.</p></details>
-    <details class="faq-item"><summary>What’s the difference between Full and Sharp?</summary><p>Sharp includes the parlay builder, beta tools, and Discord access.</p></details>
-    <details class="faq-item"><summary>Do I need a credit card for Free Brew?</summary><p>No. Just sign up and start using the dashboard.</p></details>
-    <details class="faq-item"><summary>How often are picks updated?</summary><p>Every few minutes, depending on the sport and market conditions.</p></details>
-  </div>
-</section>
-
-
-
-<!-- Community Discord Callout -->
-<section class="section community-section" style="margin-top: 60px;">
-  <h3>🗣 Join the Community</h3>
-  <p style="max-width: 700px; margin: 0 auto; color: #ccc; font-size: 1rem;">
-    Connect with other bettors in our private Discord, discuss picks, and get exclusive sharp insights before they hit the board.
-  </p>
-  <div style="margin-top: 20px;"><a class="cta-button" href="#">Join Discord</a></div>
-</section>
-
-<!-- Education Hub CTA -->
-<section class="section education-section" style="margin-top: 60px;">
-  <h3>📚 Learn & Level Up</h3>
-  <p style="max-width: 700px; margin: 0 auto; color: #ccc; font-size: 1rem;">
-    Whether you're new to sports betting or looking to sharpen your edge, explore our tutorials, strategy guides, and expert breakdowns.
-  </p>
-  <div style="margin-top: 20px;"><a class="cta-button" href="#">Visit the Education Hub</a></div>
-</section>
-
-<!-- Footer -->
-<footer class="section" style="font-size:0.9rem;">
-  <p>&copy; 2025 Potion Parlay</p>
-  <a href="/terms.html">Terms</a>
-  <a href="/privacy.html">Privacy</a>
-  <a href="mailto:support@potionparlay.com">Support</a>
-</footer>
+</body>
+</html>
 
 
