@@ -6,15 +6,33 @@
   <title>Potion Parlay</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; background: #000; color: #14f195; font-family: 'Orbitron', sans-serif; }
-    a, button { cursor: pointer; }
-    .section { padding: 60px 20px; text-align: center; }
-    .cta-button { background: linear-gradient(to right, #14f195, #9945ff); color: #000; padding: 10px 20px; border-radius: 10px; font-weight: bold; text-decoration: none; box-shadow: 0 0 10px #14f195; }
-    .plan-card { background: #0a0a0a; border: 2px solid #14f195; border-radius: 12px; padding: 24px; width: 280px; margin: 10px auto; }
+    body { margin: 0; background: #000; color: #14f195; font-family: 'Orbitron', sans-serif; scroll-behavior: smooth; }
+    a, button { cursor: pointer; transition: all 0.3s ease; }
+    .section { padding: 60px 20px; text-align: center; opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .section.reveal { opacity: 1; transform: translateY(0); }
+    .cta-button { background: linear-gradient(to right, #14f195, #9945ff); color: #000; padding: 10px 20px; border-radius: 10px; font-weight: bold; text-decoration: none; box-shadow: 0 0 10px #14f195; display: inline-block; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 20px #9945ff; }
+    .plan-card { background: #0a0a0a; border: 2px solid #14f195; border-radius: 12px; padding: 24px; width: 280px; margin: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .plan-card:hover { transform: translateY(-8px); box-shadow: 0 0 20px #14f195; }
     .footer a { color: #14f195; text-decoration: none; margin: 0 10px; font-size: 0.85rem; }
+    blockquote { background: #111; border-left: 4px solid #14f195; padding: 20px; margin: 20px auto; max-width: 700px; font-style: italic; color: #ccc; border-radius: 8px; }
+    blockquote small { display: block; margin-top: 10px; font-size: 0.85rem; color: #777; }
   </style>
 </head>
 <body>
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, { threshold: 0.1 });
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.section').forEach(section => observer.observe(section));
+    });
+  </script>
+
   <!-- Header -->
   <nav style="position:sticky;top:0;background:#000;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:1000;">
     <div style="display:flex;align-items:center;gap:10px;">
@@ -81,10 +99,10 @@
 
   <!-- Testimonials -->
   <section class="section" style="background:#111;">
-    <h2>💬 Testimonials</h2>
-    <blockquote style="max-width:600px;margin:0 auto 20px;color:#ccc;">“Potion Parlay completely changed how I build bets. The sharp fade alerts alone are worth it.”<br><small>– @EdgeSniper</small></blockquote>
-    <blockquote style="max-width:600px;margin:0 auto 20px;color:#ccc;">“Nothing else compares when it comes to +EV parlays. Sharp Mode is absolutely elite.”<br><small>– @SharpWizard</small></blockquote>
-    <blockquote style="max-width:600px;margin:0 auto;color:#ccc;">“Love being able to filter props by risk, edge, and correlation. The value here is insane.”<br><small>– @PropAlchemist</small></blockquote>
+    <h2>💬 What Our Users Are Saying</h2>
+    <blockquote>“Potion Parlay completely changed how I build bets. The sharp fade alerts alone are worth it.”<small>– @EdgeSniper</small></blockquote>
+    <blockquote>“Nothing else compares when it comes to +EV parlays. Sharp Mode is absolutely elite.”<small>– @SharpWizard</small></blockquote>
+    <blockquote>“Love being able to filter props by risk, edge, and correlation. The value here is insane.”<small>– @PropAlchemist</small></blockquote>
   </section>
 
   <!-- FAQ -->
@@ -94,6 +112,8 @@
       <p><strong>What happens if I cancel?</strong><br>You’ll keep access through the billing cycle. No penalties.</p>
       <p><strong>Can I try before paying?</strong><br>Yes — start with Free Brew and upgrade anytime.</p>
       <p><strong>What's the difference between Full and Sharp?</strong><br>Sharp includes the full parlay engine, beta tools, and Discord access.</p>
+      <p><strong>How do I know which props are most valuable?</strong><br>Use our EV Simulator and Prop Analyzer to identify mispriced lines.</p>
+      <p><strong>Is this legal to use with sportsbooks?</strong><br>Yes — we don’t place bets, we provide analytical insights. You choose where to bet.</p>
     </div>
   </section>
 
@@ -106,3 +126,4 @@
   </footer>
 </body>
 </html>
+
