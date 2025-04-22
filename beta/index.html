@@ -58,18 +58,7 @@
 
   <div id="parlay-list" style="max-width: 700px; margin: 0 auto; color: #ccc;"></div>
   <div id="parlay-summary" style="margin-top: 20px; color: #14f195;"></div>
-  <div style="margin-top: 40px;">
-    <h3 style="color:#fff;">🎯 +EV Pick Generator</h3>
-    <p style="color:#ccc; max-width: 600px; margin: 10px auto 20px;">
-      Click the button to generate a random +EV player prop from our internal projection pool.
-    </p>
-    <button onclick="generatePick()" class="cta-button" style="margin-bottom: 20px;">🔁 Spin a Pick</button>
-    <div id="ev-pick-output" style="color:#14f195; font-size: 1.1rem;"></div>
-  </div>
-<div style="margin-top: 60px;">
-  <h3 style="color:#fff;">🔥 Random EV Bet Generator</h3>
-  <button class="cta-button" onclick="showEVCard()">🎲 Spin an EV Bet</button>
-  <div id="ev-card-output" style="margin-top: 30px; max-width: 800px; margin-inline: auto;"></div>
+  
 </div>
 
   <div style="margin-top: 60px;">
@@ -86,26 +75,11 @@ fetch("/api/ev-picks")
   .then(data => {
     evBets = data;
     evBets.forEach(bet => {
-      renderEVCard(bet, 'ev-card-output');
+      // removed renderEVCard(bet, 'ev-card-output');
       addToEVList(bet);
     });
   });
 
-function showEVCard() {
-  const bet = evBets[Math.floor(Math.random() * evBets.length)];
-  renderEVCard(bet, 'ev-card-output');
-}</h4>
-      <p style="margin:0 0 10px 0; font-size:0.95rem;">${bet.time}</p>
-      <div style="font-size:1.1rem; font-weight:bold; color:#14f195;">${bet.prop}</div>
-      <div style="margin-top:10px;">
-        <span>🧠 AI Probability: <strong>${bet.ai}%</strong></span><br>
-        <span>📉 Implied Probability: <strong>${bet.implied}%</strong></span><br>
-        <span>💰 EV: <strong>${bet.ev}%</strong></span><br>
-        <span>📊 Best Odds: <strong>${bet.odds}</strong></span>
-      </div>
-    </div>
-  `;
-}
 </script>
 <script>
 function renderEVCard(bet, targetId) {
@@ -142,16 +116,6 @@ evBets.forEach(bet => {
   `;
   document.getElementById('ev-bet-list').appendChild(div);
 });
-function generatePick() {
-  const picks = [
-    "Ja Morant – Over 5.5 Assists (+120, +11.3% EV)",
-    "Mookie Betts – Over 1.5 Total Bases (+135, +13.8% EV)",
-    "Travis Kelce – Anytime TD (+100, +9.6% EV)",
-    "Jayson Tatum – Over 2.5 Threes (+110, +10.1% EV)"
-  ];
-  const rand = picks[Math.floor(Math.random() * picks.length)];
-  document.getElementById('ev-pick-output').innerText = rand;
-}
 </script>
 
 <script>
