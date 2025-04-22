@@ -115,24 +115,7 @@
   height: 100%;
   width: 100%;
   background: linear-gradient(145deg, #161616, #25243a, #3d3969);
-  z-index: -1;
-  pointer-events: none;
-}
-@keyframes foggyShift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(to bottom right, #1c1c2b, #2f1e4f);
-  background-size: 400% 400%;
-  animation: foggyShift 20s ease-in-out infinite;
+  background-size: cover;
   z-index: -1;
   pointer-events: none;
 }
@@ -165,7 +148,7 @@ body::before {
 </nav>
 
 <!-- Hero Section -->
-<section class="section" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);">
+<section class="section" style="background: linear-gradient(145deg, #161616, #25243a, #3d3969);">
   <h1 style="font-size:3.5rem;margin-bottom:20px;background:linear-gradient(to right, #14f195, #9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Parlay Smarter. Win Louder.</h1>
   <p style="font-size:1.25rem;max-width:700px;margin:0 auto 40px;color:#ccc;">Get daily +EV insights and craft AI-optimized parlays with the industry's first dynamic value builder.</p>
   <a class="cta-button" href="#waitlist">✨ Start Brewing</a>
@@ -286,3 +269,4 @@ body::before {
   <a href="mailto:support@potionparlay.com">Support</a>
 </footer>
 
+  
