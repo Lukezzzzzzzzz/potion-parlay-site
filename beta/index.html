@@ -71,6 +71,11 @@
   <button class="cta-button" onclick="showEVCard()">🎲 Spin an EV Bet</button>
   <div id="ev-card-output" style="margin-top: 30px; max-width: 800px; margin-inline: auto;"></div>
 </div>
+
+  <div style="margin-top: 60px;">
+    <h3 style="color:#fff;">📈 Today's EV Bets</h3>
+    <div id="ev-bet-list" style="display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 30px auto 0; text-align: left;"></div>
+  </div>
 </section>
 
 <script>
@@ -106,9 +111,8 @@ const evBets = [
 
 function showEVCard() {
   const bet = evBets[Math.floor(Math.random() * evBets.length)];
-  document.getElementById('ev-card-output').innerHTML = `
-    <div style="background:#222; padding:20px; border-radius:12px; color:#ccc; text-align:left;">
-      <h4 style="margin:0 0 10px 0;">${bet.league}</h4>
+  renderEVCard(bet, 'ev-card-output');
+}</h4>
       <p style="margin:0 0 10px 0; font-size:0.95rem;">${bet.time}</p>
       <div style="font-size:1.1rem; font-weight:bold; color:#14f195;">${bet.prop}</div>
       <div style="margin-top:10px;">
@@ -121,8 +125,41 @@ function showEVCard() {
   `;
 }
 </script>
-
 <script>
+function renderEVCard(bet, targetId) {
+  document.getElementById(targetId).innerHTML = `
+    <div style="background:#222; padding:20px; border-radius:12px; color:#ccc;">
+      <h4 style="margin:0 0 10px 0;">${bet.league}</h4>
+      <p style="margin:0 0 10px 0; font-size:0.95rem;">${bet.time}</p>
+      <div style="font-size:1.1rem; font-weight:bold; color:#14f195;">${bet.prop}</div>
+      <div style="margin-top:10px;">
+        <span>🧠 AI Probability: <strong>${bet.ai}%</strong></span><br>
+        <span>📉 Implied Probability: <strong>${bet.implied}%</strong></span><br>
+        <span>💰 EV: <strong>${bet.ev}%</strong></span><br>
+        <span>📊 Best Odds: <strong>${bet.odds}</strong></span>
+      </div>
+    </div>
+  `;
+}
+
+evBets.forEach(bet => {
+  const div = document.createElement('div');
+  div.style.marginBottom = '10px';
+  div.innerHTML = `
+    <div style="background:#222; padding:20px; border-radius:12px; color:#ccc;">
+      <h4 style="margin:0 0 10px 0;">${bet.league}</h4>
+      <p style="margin:0 0 10px 0; font-size:0.95rem;">${bet.time}</p>
+      <div style="font-size:1.1rem; font-weight:bold; color:#14f195;">${bet.prop}</div>
+      <div style="margin-top:10px;">
+        <span>🧠 AI Probability: <strong>${bet.ai}%</strong></span><br>
+        <span>📉 Implied Probability: <strong>${bet.implied}%</strong></span><br>
+        <span>💰 EV: <strong>${bet.ev}%</strong></span><br>
+        <span>📊 Best Odds: <strong>${bet.odds}</strong></span>
+      </div>
+    </div>
+  `;
+  document.getElementById('ev-bet-list').appendChild(div);
+});
 function generatePick() {
   const picks = [
     "Ja Morant – Over 5.5 Assists (+120, +11.3% EV)",
